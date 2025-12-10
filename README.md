@@ -47,6 +47,8 @@ __Interface utilisateur__
 
 
 **Architecture du projet**
+
+```txt
 project/
 ├── backend/
 │   ├── app/
@@ -64,6 +66,7 @@ project/
 │   └── App.jsx
 │
 └── README.md
+```
 
 
 **Technologies utilisées**
@@ -100,43 +103,53 @@ __DevOps__
 
 **Endpoints principaux (extrait)**
 __Auth__
+```txt
 POST /auth/signup
 POST /auth/login
 POST /auth/refresh
 GET  /users/me
-
+```
 
 __Recettes__
+```txt
 GET    /recipes
 GET    /recipes/{id}
 POST   /recipes
 PUT    /recipes/{id}
 DELETE /recipes/{id}
-
+```
 
 __Filtres & Recherche__
+```txt
 GET /recipes?q=nom&ingredient=pomme&type=plat&country=France&tags=Végétarien
-
+```
 
 __Interactions__
+```txt
 POST /recipes/{id}/rating
 POST /recipes/{id}/favorite
 GET  /users/{id}/favorites
-
+```
 
 **Installation et lancement**
 1. Cloner le projet
+```txt
 git clone https://github.com/ton-repo/world-recipes.git
 cd world-recipes
+```
 
 2. Lancer l’API
 Depuis backend/ :
 Sans Docker
+```txt
 pip install -r requirements.txt
 uvicorn main:app --reload
+```
 
 Avec Docker Compose
+```txt
 docker compose up --build
+```
 
 __API accessible sur :__
 http://localhost:8000
@@ -147,33 +160,50 @@ http://localhost:8000/redoc
 
 3. Lancer le frontend
 Depuis frontend/ :
+```txt
 npm install
 npm run dev
+```
 
 __Accessible sur :__
 http://localhost:5173
 
 
 **Tests**
+```txt
 pytest
+```
 
 Tests E2E frontend :
+```txt
 npm run test
-
+```
 
 **Performance & optimisation**
+
 Indexation avancée PostgreSQL
+
 Full-text search
+
 Mise en cache Redis
+
 Compression GZIP
+
 CDN pour les images
+
 Pagination optimisée
+
 Logs structurés
 
 
 **Sécurité**
+
 Mots de passe hashés (bcrypt)
+
 JWT + Refresh Tokens
+
 Protection CSRF pour l’UI
+
 Validation stricte des entrées
+
 Rate limiting via Redis
