@@ -53,7 +53,7 @@ paths:
           schema:
             type: string
         - in: query
-          name: ingredient
+          name: ingredients
           schema:
             type: string
         - in: query
@@ -64,7 +64,7 @@ paths:
           name: type
           schema:
             type: string
-            enum: [entree, plat, dessert]
+            enum: [entrée, plat, dessert]
         - in: query
           name: diet
           schema:
@@ -179,14 +179,15 @@ components:
       type: object
       properties:
         id:
-          type: string
+          type: integer
+          format: int64
         name:
           type: string
         country:
           type: string
         type:
           type: string
-          enum: [entree, plat, dessert]
+          enum: [entrée, plat, dessert]
         ingredients:
           type: array
           items:
@@ -197,11 +198,6 @@ components:
             type: string
         instructions:
           type: string
-        createdBy:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
 
     RecipeInput:
       type: object

@@ -1,399 +1,391 @@
 [
     {
-        "op": "replace",
-        "path": "/recipes.json",
-        "value": {
-        "recipes": [
-            {
-            "id": 1,
-            "type": "Entrée",
-            "name": "Bruschetta au pesto et à la courgette",
-            "country": "Genève",
-            "diets": "Végétarisme, Flextarisme",
-            "ingredients": [
-                "Pain",
-                "1 courgette",
-                "100g fromage de chèvre",
-                "4 cuillères à soupe de pesto",
-                "sel",
-                "Poivre",
-                "Huile d'olive"
-            ],
-            "instructions": [
-                "Couper la baguette en tranches et les toaster.",
-                "Couper la courgette en fines lamelles et les saisir 2 min à la poêle.",
-                "Tartiner chaque tranche de pain de pesto.",
-                "Ajouter les lamelles de courgette et un peu de chèvre émietté.",
-                "Assaisonner et servir."
-            ],
-            "img": "ressources/bruschetta.png"
-            },
-            {
-            "id": 2,
-            "type": "Entrée",
-            "name": "Soupe aux pois",
-            "country": "Canada",
-            "diets": "Végétarisme, Véganisme, Sans lactose, Sans gluten",
-            "ingredients": [
-                "300g de pois secs",
-                "1 oignon",
-                "2 carottes",
-                "1 branche de céleri",
-                "2 gousses d'ail",
-                "150g de jambon en dés",
-                "1L d'eau et 50 cl de bouillon de légumes",
-                "10 cl de lait",
-                "Sel",
-                "Poivre",
-                "Thym"
-            ],
-            "instructions": [
-                "Rincer les pois secs.",
-                "Faire revenir oignon, ail, jambon, carotte et céleri.",
-                "Ajouter les pois, l'eau et le bouillon de légumes puis le thym.",
-                "Cuire 50 min à couvert.",
-                "Ajouter le lait en fin de cuisson.",
-                "Ajuster l’assaisonnement et servir."
-            ],
-            "img": "ressources/soupe_pois.png"
-            },
-            {
-            "id": 3,
-            "type": "Entrée",
-            "name": "Beignets de riz ",
-            "country": "Mali",
-            "diets": "Végétarisme, Véganisme, Sans lactose",
-            "ingredients": [
-                "200g de riz cuit",
-                "100g de farine de riz",
-                "eau",
-                "huile de friture"
-            ],
-            "instructions": [
-                "Mélanger le riz cuit, la farine avec un peu d’eau pour former une pâte.",
-                "Chauffer l’huile.",
-                "Former des boules et les frire 3–4 min.",
-                "Égoutter et servir chaud."
-            ],
-            "img": "ressources/beignets_riz.png"
-            },
-            {
-            "id": 4,
-            "type": "Entrée",
-            "name": "Samoussas végétariens",
-            "country": "Inde",
-            "diets": "Végétarisme, Véganisme, Sans lactose",
-            "ingredients": [
-                "8 feuilles de brick",
-                "2 pommes de terre",
-                "1 poivron",
-                "1 oignon",
-                "80g de lentilles corail",
-                "ail",
-                "coriandre",
-                "garam masala",
-                "sel",
-                "piment"
-            ],
-            "instructions": [
-                "Cuire les lentilles et les pommes de terre.",
-                "Faire revenir l'oignon, le poivron, l'ail et les épices.",
-                "Ajouter lentilles, les pommes de terre écrasées.",
-                "Garnir les feuilles de brick et plier en triangles.",
-                "Cuire au four 15 min à 180°C ou frire."
-            ],
-            "img": "ressources/samoussas_vege.png"
-            },
-            {
-            "id": 5,
-            "type": "Entrée",
-            "name": "Carpaccio de saumon",
-            "country": "Vietnam",
-            "diets": "Pesco-végétarisme, Flextarisme, Sans lactose, Sans gluten, Cétogène",
-            "ingredients": [
-                "300g de saumon frais",
-                "2 citrons verts",
-                "1 échalote",
-                "coriandre",
-                "basilic",
-                "Poivre",
-                "sel",
-                "piment"
-            ],
-            "instructions": [
-                "Trancher finement le saumon.",
-                "Arroser de citron vert.",
-                "Ajouter l'échalote ciselée, les herbes et du piment.",
-                "Mettre 10min au frais.",
-                "Assaisonner et servir."
-            ],
-            "img": "ressources/carpaccio_saumon.png"
-            },
+        "id": 1,
+        "type": "entrée",
+        "name": "Bruschetta au pesto et à la courgette",
+        "country": "Genève",
+        "diets": ["Végétarisme", "Flexitarisme"],
+        "ingredients": [
+            "Pain",
+            "1 courgette",
+            "100g fromage de chèvre",
+            "4 cuillères à soupe de pesto",
+            "sel",
+            "Poivre",
+            "Huile d'olive"
+        ],
+        "instructions": [
+            "Couper la baguette en tranches et les toaster.",
+            "Couper la courgette en fines lamelles et les saisir 2 min à la poêle.",
+            "Tartiner chaque tranche de pain de pesto.",
+            "Ajouter les lamelles de courgette et un peu de chèvre émietté.",
+            "Assaisonner et servir."
+        ],
+        "img": "ressources/bruschetta.png"
+    },
+    {
+        "id": 2,
+        "type": "entrée",
+        "name": "Soupe aux pois",
+        "country": "Canada",
+        "diets": ["Végétarisme", "Véganisme", "Sans lactose", "Sans gluten"],
+        "ingredients": [
+            "300g de pois secs",
+            "1 oignon",
+            "2 carottes",
+            "1 branche de céleri",
+            "2 gousses d'ail",
+            "150g de jambon en dés",
+            "1L d'eau et 50 cl de bouillon de légumes",
+            "10 cl de lait",
+            "Sel",
+            "Poivre",
+            "Thym"
+        ],
+        "instructions": [
+            "Rincer les pois secs.",
+            "Faire revenir oignon, ail, jambon, carotte et céleri.",
+            "Ajouter les pois, l'eau et le bouillon de légumes puis le thym.",
+            "Cuire 50 min à couvert.",
+            "Ajouter le lait en fin de cuisson.",
+            "Ajuster l’assaisonnement et servir."
+        ],
+        "img": "ressources/soupe_pois.png"
+    },
+    {
+        "id": 3,
+        "type": "entrée",
+        "name": "Beignets de riz ",
+        "country": "Mali",
+        "diets": ["Végétarisme", "Véganisme", "Sans lactose"],
+        "ingredients": [
+            "200g de riz cuit",
+            "100g de farine de riz",
+            "eau",
+            "huile de friture"
+        ],
+        "instructions": [
+            "Mélanger le riz cuit, la farine avec un peu d’eau pour former une pâte.",
+            "Chauffer l’huile.",
+            "Former des boules et les frire 3–4 min.",
+            "Égoutter et servir chaud."
+        ],
+        "img": "ressources/beignets_riz.png"
+    },
+    {
+        "id": 4,
+        "type": "entrée",
+        "name": "Samoussas végétariens",
+        "country": "Inde",
+        "diets": ["Végétarisme", "Véganisme", "Sans lactose"],
+        "ingredients": [
+            "8 feuilles de brick",
+            "2 pommes de terre",
+            "1 poivron",
+            "1 oignon",
+            "80g de lentilles corail",
+            "ail",
+            "coriandre",
+            "garam masala",
+            "sel",
+            "piment"
+        ],
+        "instructions": [
+            "Cuire les lentilles et les pommes de terre.",
+            "Faire revenir l'oignon, le poivron, l'ail et les épices.",
+            "Ajouter lentilles, les pommes de terre écrasées.",
+            "Garnir les feuilles de brick et plier en triangles.",
+            "Cuire au four 15 min à 180°C ou frire."
+        ],
+        "img": "ressources/samoussas_vege.png"
+    },
+    {
+        "id": 5,
+        "type": "entrée",
+        "name": "Carpaccio de saumon",
+        "country": "Vietnam",
+        "diets": ["Pesco-végétarisme", "Flextarisme", "Sans lactose", "Sans gluten", "Cétogène"],
+        "ingredients": [
+            "300g de saumon frais",
+            "2 citrons verts",
+            "1 échalote",
+            "coriandre",
+            "basilic",
+            "Poivre",
+            "sel",
+            "piment"
+        ],
+        "instructions": [
+            "Trancher finement le saumon.",
+            "Arroser de citron vert.",
+            "Ajouter l'échalote ciselée, les herbes et du piment.",
+            "Mettre 10min au frais.",
+            "Assaisonner et servir."
+        ],
+        "img": "ressources/carpaccio_saumon.png"
+    },
 
 
 
-            {
-            "id": 6,
-            "type": "Plats",
-            "name": "Pâtes à la sauce tomate ",
-            "country": "Italie",
-            "diets": "Végétarisme, Véganisme, Sans lactose, Flextarisme",
-            "ingredients": [
-                "400g de pâtes",
-                "1 boite de tomates concassées",
-                "1 oignon",
-                "1 gousse d'ail",
-                "huile d'olive",
-                "sel",
-                "poivre"
-            ],
-            "instructions": [
-                "Cuire les pâtes selon les instructions du paquet.",
-                "Couper l'oignon et l'ail.",
-                "Faire revenir l'oignon et l'ail dans l'huile d'olive.",
-                "Ajouter les tomates concassées et laisser mijoter 10 min.",
-                "Assaisonner et servir."
-            ],
-            "img": "ressources/pates_tomate.png"
-            },
-            {
-            "id": 7,
-            "type": "Plats",
-            "name": "Paëlla",
-            "country": "Espagne",
-            "diets": "None",
-            "ingredients": [
-                "400g de poulet",
-                "300g de porc",
-                "200g de moules",
-                "150g de calamars",
-                "400g de riz",
-                "gambas",
-                "oignon",
-                "poivrons",
-                "petits pois",
-                "tomates",
-                "ail",
-                "épices à paëlla"
-            ],
-            "instructions": [
-                "Cuire le riz selon les instructions du paquet.",
-                "Couper le poulet et le porc en morceaux puis le faire revenir dans une poêle.",
-                "Ajouter légumes et épices.",
-                "Ajouter le riz.",
-                "Verser votre bouillon.",
-                "Ajouter les moules, le calamar, les gambas en fin de cuisson.",
-                "Cuire jusqu’à absorption du liquide avant de servir."
-            ],
-            "img": "ressources/paëlla.png"
-            },
-            {
-            "id": 8,
-            "type": "Plats",
-            "name": "Feijoada ",
-            "country": "Brésil",
-            "diets": "None",
-            "ingredients": [
-                "500g de haricots noirs",
-                "200g de viande de porc salée",
-                "200g de saucisses fumées",
-                "1 oignon",
-                "2 gousses d'ail",
-                "sel",
-                "poivre",
-                "feuilles de laurier"
-            ],
-            "instructions": [
-                "Cuire les haricots noirs selon les instructions du paquet.",
-                "Faire revenir l'oignon et l'ail.",
-                "Ajouter la viande de porc et les saucisses coupées en morceaux.",
-                "Ajouter les haricots, le sel, le poivre et les feuilles de laurier.",
-                " Laisser mijoter 30 min puis servez."
-            ],
-            "img": "ressources/feijoada.png"
-            },
-            {
-            "id": 9,
-            "type": "Plats",
-            "name": "Amok",
-            "country": "Cambodge",
-            "diets": "None",
-            "ingredients": [
-                "400g de filet de poisson blanc",
-                "200ml de lait de coco",
-                "citronnelle",
-                "galanga",
-                "échalote",
-                "feuilles de citronnier",
-                "piment",
-                "chou chinois",
-                "basilic thaï",
-                "cacahuètes concassées"
-            ],
-            "instructions": [
-                "Cuire le poisson blanc selon les instructions du paquet.",
-                "Couper la citronnelle, le galanga et l'échalote.",
-                "Mélanger le poisson, le lait de coco, la citronnelle, le galanga, l'échalote et les feuilles de citronnier.",
-                "Ajouter les épices et le piment.",
-                "Servir chaud avec du riz."
-            ],
-            "img": "ressources/amok.png"
-            },
-            {
-            "id": 10,
-            "type": "Plats",
-            "name": "Bao",
-            "country": "Chine",
-            "diets": "Flexitarisme",
-            "ingredients": [
-                "400g de farine",
-                "200ml d'eau tiède",
-                "20g de levure sèche",
-                "1 cuillère à soupe de sucre",
-                "1 cuillère à soupe d'huile végétale",
-                "sel",
-                "garniture au choix (porc, légumes, poulet...)"
-            ],
-            "instructions": [
-                "Pour la pâte, mélanger la farine, la levure, le sucre, l'eau, l'huile et le sel.",
-                "Pétrir jusqu'à obtenir une pâte lisse.",
-                "Laisser lever 1 heure.",
-                "Diviser la pâte en petites boules, les aplatir et ajouter la garniture préparer.",
-                "Plier et sceller les bao.",
-                "Cuire à la vapeur pendant 15 minutes, puis servir."
-            ],
-            "img": "ressources/bao.png"
-            },
+    {
+        "id": 6,
+        "type": "plat",
+        "name": "Pâtes à la sauce tomate ",
+        "country": "Italie",
+        "diets": ["Végétarisme", "Véganisme", "Sans lactose", "Flextarisme"],
+        "ingredients": [
+            "400g de pâtes",
+            "1 boite de tomates concassées",
+            "1 oignon",
+            "1 gousse d'ail",
+            "huile d'olive",
+            "sel",
+            "poivre"
+        ],
+        "instructions": [
+            "Cuire les pâtes selon les instructions du paquet.",
+            "Couper l'oignon et l'ail.",
+            "Faire revenir l'oignon et l'ail dans l'huile d'olive.",
+            "Ajouter les tomates concassées et laisser mijoter 10 min.",
+            "Assaisonner et servir."
+        ],
+        "img": "ressources/pates_tomate.png"
+    },
+    {
+        "id": 7,
+        "type": "plat",
+        "name": "Paëlla",
+        "country": "Espagne",
+        "diets": [],
+        "ingredients": [
+            "400g de poulet",
+            "300g de porc",
+            "200g de moules",
+            "150g de calamars",
+            "400g de riz",
+            "gambas",
+            "oignon",
+            "poivrons",
+            "petits pois",
+            "tomates",
+            "ail",
+            "épices à paëlla"
+        ],
+        "instructions": [
+            "Cuire le riz selon les instructions du paquet.",
+            "Couper le poulet et le porc en morceaux puis le faire revenir dans une poêle.",
+            "Ajouter légumes et épices.",
+            "Ajouter le riz.",
+            "Verser votre bouillon.",
+            "Ajouter les moules, le calamar, les gambas en fin de cuisson.",
+            "Cuire jusqu’à absorption du liquide avant de servir."
+        ],
+        "img": "ressources/paëlla.png"
+    },
+    {
+        "id": 8,
+        "type": "plat",
+        "name": "Feijoada ",
+        "country": "Brésil",
+        "diets": [],
+        "ingredients": [
+            "500g de haricots noirs",
+            "200g de viande de porc salée",
+            "200g de saucisses fumées",
+            "1 oignon",
+            "2 gousses d'ail",
+            "sel",
+            "poivre",
+            "feuilles de laurier"
+        ],
+        "instructions": [
+            "Cuire les haricots noirs selon les instructions du paquet.",
+            "Faire revenir l'oignon et l'ail.",
+            "Ajouter la viande de porc et les saucisses coupées en morceaux.",
+            "Ajouter les haricots, le sel, le poivre et les feuilles de laurier.",
+            " Laisser mijoter 30 min puis servez."
+        ],
+        "img": "ressources/feijoada.png"
+    },
+    {
+        "id": 9,
+        "type": "plat",
+        "name": "Amok",
+        "country": "Cambodge",
+        "diets": [],
+        "ingredients": [
+            "400g de filet de poisson blanc",
+            "200ml de lait de coco",
+            "citronnelle",
+            "galanga",
+            "échalote",
+            "feuilles de citronnier",
+            "piment",
+            "chou chinois",
+            "basilic thaï",
+            "cacahuètes concassées"
+        ],
+        "instructions": [
+            "Cuire le poisson blanc selon les instructions du paquet.",
+            "Couper la citronnelle, le galanga et l'échalote.",
+            "Mélanger le poisson, le lait de coco, la citronnelle, le galanga, l'échalote et les feuilles de citronnier.",
+            "Ajouter les épices et le piment.",
+            "Servir chaud avec du riz."
+        ],
+        "img": "ressources/amok.png"
+    },
+    {
+        "id": 10,
+        "type": "plat",
+        "name": "Bao",
+        "country": "Chine",
+        "diets": ["Flexitarisme"],
+        "ingredients": [
+            "400g de farine",
+            "200ml d'eau tiède",
+            "20g de levure sèche",
+            "1 cuillère à soupe de sucre",
+            "1 cuillère à soupe d'huile végétale",
+            "sel",
+            "garniture au choix (porc, légumes, poulet...)"
+        ],
+        "instructions": [
+            "Pour la pâte, mélanger la farine, la levure, le sucre, l'eau, l'huile et le sel.",
+            "Pétrir jusqu'à obtenir une pâte lisse.",
+            "Laisser lever 1 heure.",
+            "Diviser la pâte en petites boules, les aplatir et ajouter la garniture préparer.",
+            "Plier et sceller les bao.",
+            "Cuire à la vapeur pendant 15 minutes, puis servir."
+        ],
+        "img": "ressources/bao.png"
+    },
 
 
 
-            {
-            "id": 11,
-            "type": "Desserts",
-            "name": "Cheesecake",
-            "country": "États-Unis",
-            "diets": "None",
-            "ingredients": [
-                "250g de speculoos",
-                "3 œufs",
-                "100g de sucre glace",
-                "300g de cream cheese",
-                "100g de beurre fondu",
-                "200ml de crème fraîche",
-                "1 cuillère à café d'extrait de vanille"
-            ],
-            "instructions": [
-                "Préchauffer le four à 160°C.",
-                "Émietter les speculoos et les mélanger avec le beurre fondu.",
-                "Tasser le mélange dans le fond d'un moule à charnière.",
-                "Mélanger les jaunes avec le sucre et le cream cheese.",
-                "Monter les blancs en neige et les incorporer délicatement.",
-                "Verser la préparation dans le moule.",
-                "Cuire 30 minutes, puis réfrigérer au moins 4 heures avant de servir."
-            ],
-            "img": "ressources/cheesecake.png"
-            },
-            {
-            "id": 12,
-            "type": "Desserts",
-            "name": "Cornes de gazelle",
-            "country": "Maroc",
-            "diets": "Végétarisme, Flexitarisme",
-            "ingredients": [
-                "250g de farine",
-                "100g de beurre fondu",
-                "50ml d'eau de fleur d'oranger",
-                "Pour la farce :",
-                "200g d'amandes en poudre",
-                "100g de sucre glace",
-                "50g de beurre fondu",
-                "eau de fleur d'oranger"
-            ],
-            "instructions": [
-                "Préparer la pâte en mélangeant la farine, le beurre fondu et l'eau de fleur d'oranger.",
-                "Laisser reposer 30 min.",
-                "Préparer la farce en mélangeant les amandes, le sucre glace, le beurre fondu et l'eau de fleur d'oranger jusqu'à obtenir une pâte homogène.",
-                "Étaler la pâte et découper des cercles.",
-                "Déposer une cuillère de farce sur chaque cercle et former des croissants.",
-                "Cuire au four 15 min à 180°C.",
-                "Laisser refroidir avant de servir."
-            ],
-            "img": "ressources/cornes_gazelle.png"
-            },
-            {
-            "id": 13,
-            "type": "Desserts",
-            "name": "Apple pie",
-            "country": "Grande-Bretagne",
-            "diets": "Végétarisme, Flexitarisme",
-            "ingredients": [
-                "250g de farine",
-                "125g de beurre",
-                "50g de sucre",
-                "1 œuf",
-                "5 pommes",
-                "50g de sucre roux",
-                "1 cuillère à café de cannelle"
-            ],
-            "instructions": [
-                "Préparer la pâte en mélangeant la farine, le beurre, le sucre et l'œuf.",
-                "Laisser reposer 30 min.",
-                "Éplucher et couper les pommes en tranches.",
-                "Mélanger le sucre roux et la cannelle.",
-                "Disposer les tranches de pomme dans un plat.",
-                "Recouvrir de la pâte préparée.",
-                "Cuire au four 45 min à 180°C."
-            ],
-            "img": "ressources/apple_pie.png"
-            },
-            {
-            "id": 14,
-            "type": "Desserts",
-            "name": "Tiramisu",
-            "country": "Italie",
-            "diets": "None",
-            "ingredients": [
-                "250g de mascarpone",
-                "3 œufs",
-                "100g de sucre",
-                "200g de biscuits à la cuillère",
-                "300ml de café fort",
-                "cacao en poudre"
-            ],
-            "instructions": [
-                "Séparer les blancs des jaunes d'œufs.",
-                "Mélanger les jaunes avec le sucre et le mascarpone.",
-                "Monter les blancs en neige et les incorporer délicatement.",
-                "Tremper les biscuits dans le café et les disposer dans un plat.",
-                "Recouvrir d'une couche de crème au mascarpone.",
-                "Répéter l'opération et finir par une couche de crème.",
-                "Saupoudrer de cacao en poudre et réfrigérer au moins 4 heures avant de servir."
-            ],
-            "img": "ressources/tiramisu.png"
-            },
-            {
-            "id": 15,
-            "type": "Desserts",
-            "name": "Pavlova",
-            "country": "Australie",
-            "diets": "None",
-            "ingredients": [
-                "Blanc d'oeufs",
-                "Sucre",
-                "Maïzena",
-                "Chantilly",
-                "Fruits (kiwi, fraise, passion, ...)"
-            ],
-            "instructions": [
-                "Séparer les blancs des jaunes d'œufs.",
-                "Monter les blancs en neige avec du sucre pour faire une meringue",
-                "Former un nid avec la meringue puis la cuire pendant 1 heure à 120°C",
-                "Laisser refoidir.",
-                "La garnir à votre guise avec de la chantilly et des fruits avant de servir."
-            ],
-            "img": "ressources/pavlova.png"
-            }
-        ]
-        }
+    {
+        "id": 11,
+        "type": "dessert",
+        "name": "Cheesecake",
+        "country": "États-Unis",
+        "diets": [],
+        "ingredients": [
+            "250g de speculoos",
+            "3 œufs",
+            "100g de sucre glace",
+            "300g de cream cheese",
+            "100g de beurre fondu",
+            "200ml de crème fraîche",
+            "1 cuillère à café d'extrait de vanille"
+        ],
+        "instructions": [
+            "Préchauffer le four à 160°C.",
+            "Émietter les speculoos et les mélanger avec le beurre fondu.",
+            "Tasser le mélange dans le fond d'un moule à charnière.",
+            "Mélanger les jaunes avec le sucre et le cream cheese.",
+            "Monter les blancs en neige et les incorporer délicatement.",
+            "Verser la préparation dans le moule.",
+            "Cuire 30 minutes, puis réfrigérer au moins 4 heures avant de servir."
+        ],
+        "img": "ressources/cheesecake.png"
+    },
+    {
+        "id": 12,
+        "type": "dessert",
+        "name": "Cornes de gazelle",
+        "country": "Maroc",
+        "diets": ["Végétarisme", "Flexitarisme"],
+        "ingredients": [
+            "250g de farine",
+            "100g de beurre fondu",
+            "50ml d'eau de fleur d'oranger",
+            "Pour la farce :",
+            "200g d'amandes en poudre",
+            "100g de sucre glace",
+            "50g de beurre fondu",
+            "eau de fleur d'oranger"
+        ],
+        "instructions": [
+            "Préparer la pâte en mélangeant la farine, le beurre fondu et l'eau de fleur d'oranger.",
+            "Laisser reposer 30 min.",
+            "Préparer la farce en mélangeant les amandes, le sucre glace, le beurre fondu et l'eau de fleur d'oranger jusqu'à obtenir une pâte homogène.",
+            "Étaler la pâte et découper des cercles.",
+            "Déposer une cuillère de farce sur chaque cercle et former des croissants.",
+            "Cuire au four 15 min à 180°C.",
+            "Laisser refroidir avant de servir."
+        ],
+        "img": "ressources/cornes_gazelle.png"
+    },
+    {
+        "id": 13,
+        "type": "dessert",
+        "name": "Apple pie",
+        "country": "Grande-Bretagne",
+        "diets": ["Végétarisme", "Flexitarisme"],
+        "ingredients": [
+            "250g de farine",
+            "125g de beurre",
+            "50g de sucre",
+            "1 œuf",
+            "5 pommes",
+            "50g de sucre roux",
+            "1 cuillère à café de cannelle"
+        ],
+        "instructions": [
+            "Préparer la pâte en mélangeant la farine, le beurre, le sucre et l'œuf.",
+            "Laisser reposer 30 min.",
+            "Éplucher et couper les pommes en tranches.",
+            "Mélanger le sucre roux et la cannelle.",
+            "Disposer les tranches de pomme dans un plat.",
+            "Recouvrir de la pâte préparée.",
+            "Cuire au four 45 min à 180°C."
+        ],
+        "img": "ressources/apple_pie.png"
+    },
+    {
+        "id": 14,
+        "type": "dessert",
+        "name": "Tiramisu",
+        "country": "Italie",
+        "diets": [],
+        "ingredients": [
+            "250g de mascarpone",
+            "3 œufs",
+            "100g de sucre",
+            "200g de biscuits à la cuillère",
+            "300ml de café fort",
+            "cacao en poudre"
+        ],
+        "instructions": [
+            "Séparer les blancs des jaunes d'œufs.",
+            "Mélanger les jaunes avec le sucre et le mascarpone.",
+            "Monter les blancs en neige et les incorporer délicatement.",
+            "Tremper les biscuits dans le café et les disposer dans un plat.",
+            "Recouvrir d'une couche de crème au mascarpone.",
+            "Répéter l'opération et finir par une couche de crème.",
+            "Saupoudrer de cacao en poudre et réfrigérer au moins 4 heures avant de servir."
+        ],
+        "img": "ressources/tiramisu.png"
+    },
+    {
+        "id": 15,
+        "type": "dessert",
+        "name": "Pavlova",
+        "country": "Australie",
+        "diets": [],
+        "ingredients": [
+            "Blanc d'oeufs",
+            "Sucre",
+            "Maïzena",
+            "Chantilly",
+            "Fruits (kiwi, fraise, passion, ...)"
+        ],
+        "instructions": [
+            "Séparer les blancs des jaunes d'œufs.",
+            "Monter les blancs en neige avec du sucre pour faire une meringue",
+            "Former un nid avec la meringue puis la cuire pendant 1 heure à 120°C",
+            "Laisser refroidir.",
+            "La garnir à votre guise avec de la chantilly et des fruits avant de servir."
+        ],
+        "img": "ressources/pavlova.png"
     }
 ]
