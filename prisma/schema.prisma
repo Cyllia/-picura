@@ -1,0 +1,146 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique(map: "name") @db.VarChar(100)
+  description String?   @db.Text
+  created_at  DateTime? @default(now()) @db.Timestamp(0)
+  recipes     recipes[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model countries {
+  id         Int       @id @default(autoincrement())
+  name       String    @unique(map: "name") @db.VarChar(100)
+  code       String    @unique(map: "code") @db.VarChar(2)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  recipes    recipes[]
+}
+
+model diets {
+  id           Int            @id @default(autoincrement())
+  name         String         @unique(map: "name") @db.VarChar(100)
+  description  String?        @db.Text
+  created_at   DateTime?      @default(now()) @db.Timestamp(0)
+  recipe_diets recipe_diets[]
+}
+
+model favorites {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  recipe_id  Int
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "favorites_ibfk_1")
+  recipes    recipes   @relation(fields: [recipe_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "favorites_ibfk_2")
+
+  @@unique([user_id, recipe_id], map: "unique_user_recipe_favorite")
+  @@index([recipe_id], map: "idx_recipe")
+  @@index([user_id], map: "idx_user")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model ingredients {
+  id                 Int                  @id @default(autoincrement())
+  name               String               @unique(map: "name") @db.VarChar(150)
+  category           String?              @db.VarChar(50)
+  created_at         DateTime?            @default(now()) @db.Timestamp(0)
+  recipe_ingredients recipe_ingredients[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model ratings {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  recipe_id  Int
+  rating     Int
+  comment    String?   @db.Text
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  updated_at DateTime? @default(now()) @db.Timestamp(0)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "ratings_ibfk_1")
+  recipes    recipes   @relation(fields: [recipe_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "ratings_ibfk_2")
+
+  @@unique([user_id, recipe_id], map: "unique_user_recipe_rating")
+  @@index([recipe_id], map: "idx_recipe")
+}
+
+model recipe_diets {
+  id        Int     @id @default(autoincrement())
+  recipe_id Int
+  diet_id   Int
+  recipes   recipes @relation(fields: [recipe_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "recipe_diets_ibfk_1")
+  diets     diets   @relation(fields: [diet_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "recipe_diets_ibfk_2")
+
+  @@unique([recipe_id, diet_id], map: "unique_recipe_diet")
+  @@index([diet_id], map: "idx_diet")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model recipe_ingredients {
+  id            Int         @id @default(autoincrement())
+  recipe_id     Int
+  ingredient_id Int
+  quantity      Decimal     @db.Decimal(10, 2)
+  unit          String?     @db.VarChar(50)
+  recipes       recipes     @relation(fields: [recipe_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "recipe_ingredients_ibfk_1")
+  ingredients   ingredients @relation(fields: [ingredient_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "recipe_ingredients_ibfk_2")
+
+  @@index([ingredient_id], map: "idx_ingredient")
+  @@index([recipe_id], map: "idx_recipe")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model recipes {
+  id                 Int                  @id @default(autoincrement())
+  user_id            Int
+  title              String               @db.VarChar(255)
+  description        String?              @db.Text
+  difficulty         Int?                 @default(3)
+  prep_time          Int?
+  cook_time          Int?
+  servings           Int?                 @default(1)
+  instructions       String               @db.Text
+  image_url          String?              @db.VarChar(500)
+  category_id        Int
+  country_id         Int
+  avg_rating         Decimal?             @default(0.00) @db.Decimal(3, 2)
+  total_ratings      Int?                 @default(0)
+  created_at         DateTime?            @default(now()) @db.Timestamp(0)
+  updated_at         DateTime?            @default(now()) @db.Timestamp(0)
+  favorites          favorites[]
+  ratings            ratings[]
+  recipe_diets       recipe_diets[]
+  recipe_ingredients recipe_ingredients[]
+  users              users                @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "recipes_ibfk_1")
+  categories         categories           @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "recipes_ibfk_2")
+  countries          countries            @relation(fields: [country_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "recipes_ibfk_3")
+
+  @@index([category_id], map: "idx_category")
+  @@index([country_id], map: "idx_country")
+  @@index([title], map: "idx_title")
+  @@index([user_id], map: "idx_user")
+}
+
+model users {
+  id            Int         @id @default(autoincrement())
+  email         String      @unique(map: "email") @db.VarChar(255)
+  password_hash String      @db.VarChar(255)
+  username      String      @unique(map: "username") @db.VarChar(100)
+  first_name    String?     @db.VarChar(100)
+  profile_image String?     @db.VarChar(500)
+  bio           String?     @db.Text
+  created_at    DateTime?   @default(now()) @db.Timestamp(0)
+  updated_at    DateTime?   @default(now()) @db.Timestamp(0)
+  favorites     favorites[]
+  ratings       ratings[]
+  recipes       recipes[]
+
+  @@index([email], map: "idx_email")
+  @@index([username], map: "idx_username")
+}
