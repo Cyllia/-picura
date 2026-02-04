@@ -156,7 +156,7 @@
         "type": "plat",
         "name": "Paëlla",
         "country": "Espagne",
-        "diets": [],
+        "diets": ["none"],
         "ingredients": [
             "400g de poulet",
             "300g de porc",
@@ -187,7 +187,7 @@
         "type": "plat",
         "name": "Feijoada ",
         "country": "Brésil",
-        "diets": [],
+        "diets": ["none"],
         "ingredients": [
             "500g de haricots noirs",
             "200g de viande de porc salée",
@@ -212,7 +212,7 @@
         "type": "plat",
         "name": "Amok",
         "country": "Cambodge",
-        "diets": [],
+        "diets": ["none"],
         "ingredients": [
             "400g de filet de poisson blanc",
             "200ml de lait de coco",
@@ -267,7 +267,7 @@
         "type": "dessert",
         "name": "Cheesecake",
         "country": "États-Unis",
-        "diets": [],
+        "diets": ["none"],
         "ingredients": [
             "250g de speculoos",
             "3 œufs",
@@ -346,7 +346,7 @@
         "type": "dessert",
         "name": "Tiramisu",
         "country": "Italie",
-        "diets": [],
+        "diets": ["none"],
         "ingredients": [
             "250g de mascarpone",
             "3 œufs",
@@ -371,7 +371,7 @@
         "type": "dessert",
         "name": "Pavlova",
         "country": "Australie",
-        "diets": [],
+        "diets": ["none"],
         "ingredients": [
             "Blanc d'oeufs",
             "Sucre",

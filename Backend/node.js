@@ -6,6 +6,11 @@ const bcrypt = require('bcryptjs');
 const app = express();
 app.use(express.json());
 
+const normalize = str => {
+    if (!str) return ""; // Sécurité si la chaîne est vide
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+};
+
 const DATA_FILE = './recipes.json';
 const SECRET_KEY = '123456789';
 
@@ -88,10 +93,10 @@ app.get('/api/recipes', (req, res) => {
     let recipes = getRecipes();
 
     if (name) {
-        recipes = recipes.filter(r => r.name.toLowerCase().includes(name.toLowerCase()));
+        recipes = recipes.filter(r => normalize(r.name).includes(normalize(name)));
     }
     if (country) {
-        recipes = recipes.filter(r => r.country.toLowerCase() === country.toLowerCase());
+        recipes = recipes.filter(r => normalize(r.country).includes(normalize(country)));
     }
     if (type) {
         recipes = recipes.filter(r => normalize(r.type).includes(normalize(type)));
@@ -102,8 +107,15 @@ app.get('/api/recipes', (req, res) => {
         );
     }
     if (diet) {
-        recipes = recipes.filter(r => r.diets && r.diets.some(d => d.toLowerCase() === diet.toLowerCase()));
+        if (diet.toLowerCase() === 'none') {
+            recipes = recipes.filter(r => !r.diets || r.diets.length === 0);
+        } else {
+            recipes = recipes.filter(r => 
+                r.diets && r.diets.some(d => normalize(d).includes(normalize(diet)))
+            );
+        }
     }
+
     const limit = parseInt(req.query.limit) || 20;
     const skip = parseInt(req.query.skip) || 0;
 
