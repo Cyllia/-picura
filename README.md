@@ -4,7 +4,9 @@ API performante + Interface utilisateur moderne pour explorer, rechercher et gé
 
 
 **Présentation du projet**
-Ce projet a pour objectif de concevoir :
+Ce projet, nommé Épicuria, est une API optimisée faite pour gérer et fournir des recettes du monde, elle répond aux critère de performance, de fiabilité et d'efficacité. L'API traitera rapidement les requêtes et offre des résultats cohérents et pertinant.
+En complément de l'API, Épicuria inclut une interface utilisateur intuitive et fonctionnelle, accessible via au moins une des plateformes suivantes : application web, mobile, ou desktop. L'interface permet aux utilisateurs de rechercher, visualiser, et interagir avec les recettes du monde de manière fluide.
+
 
 __1. Une API optimisée__
 Capable de gérer efficacement des recettes du monde :
@@ -19,15 +21,12 @@ __2. Une Interface Utilisateur intuitive__
 Accessible sur web / mobile / desktop, permettant :
 - Recherche fluide des recettes
 - Visualisation détaillée
-- Ajout aux favoris, notation, partage
+- Ajout aux favoris, notation
 - Connexion, inscription, personnalisation
-
-Le tout en respectant les critères de performance, expérience utilisateur et scalabilité.
 
 
 **Fonctionnalités principales**
 __API__
-
 - Authentification (JWT)
 - CRUD complet des recettes
 - Recherche par nom, ingrédients, pays
@@ -35,7 +34,7 @@ __API__
 - Gestion des utilisateurs (profil, favoris, notations)
 - Optimisation via cache Redis
 - Validation avancée des données
-- Documentation automatique (OpenAPI / Swagger)
+- Documentation automatique (OpenAPI)
 
 __Interface utilisateur__
 - Recherche instantanée
@@ -50,13 +49,11 @@ __Interface utilisateur__
 
 ```txt
 project/
-├── backend/
-│   ├── app/
-│   ├── routers/
-│   ├── models/
-│   ├── controllers/
-│   ├── tests/
-│   └── main.py
+├── Backend/
+│   ├── node.js
+│   ├── openapi.yaml
+│   ├── recipes.json
+│   └── user.json
 │
 ├── frontend/
 │   ├── src/
@@ -65,37 +62,30 @@ project/
 │   ├── assets/
 │   └── App.jsx
 │
+├── ressources/
+│   └── images des plats en .png
+│
 └── README.md
 ```
 
 
 **Technologies utilisées**
 __Backend__
-- FastAPI (Python)
-- PostgreSQL
-- SQLAlchemy
-- Redis (cache + rate limiting)
-- JWT authentication
-- Docker / Docker Compose
+
 
 __Frontend__
-- React
-- Vite
-- TailwindCSS
-- Axios
+
 
 __DevOps__
-- Docker
-- GitHub Actions (CI/CD)
-- Swagger (doc API)
+
 
 
 **Modèle de données (concept)**
-- Utilisateurs
-- Recettes
-- Ingrédients
-- Régimes (tags)
-- Pays
+- Utilisateurs (user)
+- Recettes (recipes)
+- Ingrédients (ingrediants)
+- Régimes (diets)
+- Pays (country)
 - Favoris
 - Notations
 - Commentaires
@@ -121,7 +111,7 @@ DELETE /recipes/{id}
 
 __Filtres & Recherche__
 ```txt
-GET /recipes?q=nom&ingredient=pomme&type=plat&country=France&tags=Végétarien
+GET /recipes?name=Paëlla&ingredient=ail&type=plat&country=Espagne&diets=none
 ```
 
 __Interactions__
@@ -134,49 +124,46 @@ GET  /users/{id}/favorites
 **Installation et lancement**
 1. Cloner le projet
 ```txt
-git clone https://github.com/ton-repo/world-recipes.git
-cd world-recipes
+git clone https://github.com/Cyllia/-picura.git
 ```
 
 2. Lancer l’API
 Depuis backend/ :
 Sans Docker
 ```txt
-pip install -r requirements.txt
-uvicorn main:app --reload
+
 ```
 
 Avec Docker Compose
 ```txt
-docker compose up --build
+
 ```
 
 __API accessible sur :__
-http://localhost:8000
+http://localhost:3000/api/recipes
 
 Docs automatiques :
-http://localhost:8000/docs
-http://localhost:8000/redoc
+http://localhost:3000/docs
+http://localhost:3000/redoc
 
 3. Lancer le frontend
 Depuis frontend/ :
 ```txt
-npm install
-npm run dev
+
 ```
 
 __Accessible sur :__
-http://localhost:5173
+
 
 
 **Tests**
 ```txt
-pytest
+
 ```
 
 Tests E2E frontend :
 ```txt
-npm run test
+
 ```
 
 **Performance & optimisation**
