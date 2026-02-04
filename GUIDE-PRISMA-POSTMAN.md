@@ -160,6 +160,269 @@ Puis ouvrir : **http://localhost:5556**
 
 ---
 
+## 🎯 LISTE COMPLÈTE DES REQUÊTES À TESTER
+
+### 🔐 AUTHENTIFICATION
+
+#### 📌 1. Inscription (Register)
+- **Méthode** : `POST`
+- **URL** : `http://localhost:3000/api/auth/register`
+- **Headers** : `Content-Type: application/json`
+- **Body** :
+```json
+{
+  "email": "nouveau@epicuria.com",
+  "password": "MotDePasse123!",
+  "username": "NouveauChef",
+  "first_name": "Jean",
+  "last_name": "Dupont"
+}
+```
+
+#### 📌 2. Connexion (Login)
+- **Méthode** : `POST`
+- **URL** : `http://localhost:3000/api/auth/login`
+- **Headers** : `Content-Type: application/json`
+- **Body** :
+```json
+{
+  "email": "test@epicuria.com",
+  "password": "password123"
+}
+```
+
+---
+
+### 🍳 RECETTES
+
+#### 📌 3. Récupérer TOUTES les recettes
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/recipes`
+- **Résultat** : Liste complète des 15 recettes
+
+#### 📌 4. Récupérer UNE recette par ID
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/recipes/5`
+- **Résultat** : Détails de la recette 5 (vues +1)
+
+#### 📌 5. Créer une nouvelle recette
+- **Méthode** : `POST`
+- **URL** : `http://localhost:3000/api/recipes`
+- **Headers** : `Content-Type: application/json`
+- **Body** :
+```json
+{
+  "user_id": 1,
+  "title": "Salade César Maison",
+  "description": "Une délicieuse salade César avec poulet grillé",
+  "difficulty": 1,
+  "prep_time": 10,
+  "cook_time": 15,
+  "servings": 2,
+  "instructions": "1. Griller le poulet\n2. Préparer la sauce\n3. Mélanger la salade\n4. Ajouter les croûtons",
+  "category_id": 1,
+  "country_id": 1,
+  "image_url": "/images/salade-cesar.jpg"
+}
+```
+
+#### 📌 6. Modifier une recette existante
+- **Méthode** : `PUT`
+- **URL** : `http://localhost:3000/api/recipes/1`
+- **Headers** : `Content-Type: application/json`
+- **Body** :
+```json
+{
+  "title": "Pho Vietnamien Revisité",
+  "description": "Version améliorée du Pho classique",
+  "difficulty": 3
+}
+```
+
+#### 📌 7. Supprimer une recette
+- **Méthode** : `DELETE`
+- **URL** : `http://localhost:3000/api/recipes/16`
+- **Résultat** : `{"success": true}`
+
+---
+
+### 🔍 RECHERCHE
+
+#### 📌 8. Rechercher des recettes par titre
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/search/recipes?query=poulet`
+- **Résultat** : Toutes les recettes contenant "poulet"
+
+#### 📌 9. Rechercher par catégorie
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/search/recipes?categoryId=1`
+- **Résultat** : Recettes de la catégorie 1 (Plat principal)
+
+#### 📌 10. Rechercher par pays
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/search/recipes?countryId=5`
+- **Résultat** : Recettes vietnamiennes
+
+#### 📌 11. Rechercher par difficulté
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/search/recipes?difficulty=1`
+- **Résultat** : Recettes faciles (difficulté 1)
+
+#### 📌 12. Recherche combinée
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/search/recipes?query=curry&categoryId=1&difficulty=2`
+- **Résultat** : Plats principaux au curry de difficulté moyenne
+
+---
+
+### ❤️ FAVORIS (LIKES)
+
+#### 📌 13. Liker une recette
+- **Méthode** : `POST`
+- **URL** : `http://localhost:3000/api/favorites`
+- **Headers** : `Content-Type: application/json`
+- **Body** :
+```json
+{
+  "user_id": 1,
+  "recipe_id": 3
+}
+```
+
+#### 📌 14. Voir tous les favoris d'un utilisateur
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/favorites?userId=1`
+- **Résultat** : Toutes les recettes likées par l'utilisateur 1
+
+#### 📌 15. Unlike une recette
+- **Méthode** : `DELETE`
+- **URL** : `http://localhost:3000/api/favorites/2`
+- **Résultat** : Supprime le favori ID 2
+
+---
+
+### ⭐ NOTES (RATINGS)
+
+#### 📌 16. Noter une recette
+- **Méthode** : `POST`
+- **URL** : `http://localhost:3000/api/ratings`
+- **Headers** : `Content-Type: application/json`
+- **Body** :
+```json
+{
+  "user_id": 1,
+  "recipe_id": 5,
+  "rating": 5,
+  "comment": "Absolument délicieux ! Meilleure recette que j'ai testée"
+}
+```
+
+#### 📌 17. Voir les notes d'une recette
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/ratings?recipeId=1`
+- **Résultat** : Toutes les notes de la recette 1
+
+#### 📌 18. Modifier une note
+- **Méthode** : `PUT`
+- **URL** : `http://localhost:3000/api/ratings/1`
+- **Headers** : `Content-Type: application/json`
+- **Body** :
+```json
+{
+  "rating": 4,
+  "comment": "Très bon, mais un peu épicé pour moi"
+}
+```
+
+#### 📌 19. Supprimer une note
+- **Méthode** : `DELETE`
+- **URL** : `http://localhost:3000/api/ratings/1`
+
+---
+
+### 🏷️ FILTRES
+
+#### 📌 20. Récupérer toutes les catégories
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/filters/categories`
+- **Résultat** : Liste des 3 catégories (Plat principal, Dessert, Entrée)
+
+#### 📌 21. Récupérer tous les pays
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/filters/countries`
+- **Résultat** : Liste des 14 pays disponibles
+
+#### 📌 22. Récupérer tous les régimes alimentaires
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/filters/diets`
+- **Résultat** : Liste des 9 régimes (Végétarien, Sans gluten, etc.)
+
+#### 📌 23. Récupérer tous les ingrédients
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/api/filters/ingredients`
+- **Résultat** : Liste des 93 ingrédients
+
+---
+
+### 🧪 TESTS AVANCÉS
+
+#### 📌 24. Créer plusieurs favoris d'affilée
+Testez en créant 5 favoris différents pour voir la liste augmenter :
+```json
+{"user_id": 1, "recipe_id": 1}
+{"user_id": 1, "recipe_id": 2}
+{"user_id": 1, "recipe_id": 3}
+{"user_id": 1, "recipe_id": 7}
+{"user_id": 1, "recipe_id": 10}
+```
+
+#### 📌 25. Tester le compteur de vues
+- Appeler `GET /api/recipes/1` plusieurs fois
+- Vérifier dans Prisma Studio que `views` augmente à chaque fois
+
+#### 📌 26. Recherche vide
+- **URL** : `http://localhost:3000/api/search/recipes?query=zzzznonexistant`
+- **Résultat** : Tableau vide `[]`
+
+#### 📌 27. Tester les erreurs
+- **URL** : `http://localhost:3000/api/recipes/9999` (ID inexistant)
+- **Résultat** : Erreur 404 ou message d'erreur
+
+---
+
+### 📊 SCÉNARIOS COMPLETS
+
+#### 🎬 Scénario 1 : Créer un compte et ajouter une recette
+1. POST `/api/auth/register` → Créer compte
+2. POST `/api/auth/login` → Se connecter
+3. POST `/api/recipes` → Ajouter recette
+4. GET `/api/recipes` → Vérifier qu'elle apparaît
+
+#### 🎬 Scénario 2 : Explorer et liker des recettes
+1. GET `/api/recipes` → Liste complète
+2. GET `/api/recipes/3` → Voir détails
+3. POST `/api/favorites` → Liker la recette 3
+4. GET `/api/favorites?userId=1` → Vérifier le like
+5. GET `/api/recipes/3` → Revoir (vues +1)
+
+#### 🎬 Scénario 3 : Recherche et notation
+1. GET `/api/filters/countries` → Voir les pays
+2. GET `/api/search/recipes?countryId=5` → Recettes vietnamiennes
+3. GET `/api/recipes/1` → Détails du Pho
+4. POST `/api/ratings` → Noter 5/5
+5. GET `/api/ratings?recipeId=1` → Voir la note ajoutée
+
+#### 🎬 Scénario 4 : Gestion complète d'une recette
+1. POST `/api/recipes` → Créer recette "Tarte aux pommes"
+2. Noter l'ID retourné (ex: 16)
+3. PUT `/api/recipes/16` → Modifier le titre
+4. POST `/api/favorites` → Liker avec `recipe_id: 16`
+5. POST `/api/ratings` → Noter la recette
+6. GET `/api/recipes/16` → Vérifier tout
+7. DELETE `/api/recipes/16` → Supprimer
+
+---
+
 ## 📝 Créer une Collection Postman (Optionnel mais utile)
 
 ### Pourquoi ?
