@@ -38,9 +38,27 @@ async function main() {
 
   // Créer les pays
   const countries = Array.from(new Set(recipesData.map(r => r.country)));
+  const countryCodes: Record<string, string> = {
+    'France': 'FR',
+    'Italie': 'IT',
+    'Suisse': 'CH',
+    'Espagne': 'ES',
+    'Maroc': 'MA',
+    'Brésil': 'BR',
+    'Australie': 'AU',
+    'Cambodge': 'KH',
+    'Chine': 'CN',
+    'Inde': 'IN',
+    'Genève': 'GV',
+    'Canada': 'CA',
+    'Mali': 'ML',
+    'Vietnam': 'VN',
+    'États-Unis': 'US',
+    'Grande-Bretagne': 'GB',
+  };
+  
   for (const countryName of countries) {
-    // Générer un code pays basique (2 premières lettres en majuscules)
-    const code = countryName.substring(0, 2).toUpperCase();
+    const code = countryCodes[countryName] || countryName.substring(0, 2).toUpperCase();
     await prisma.countries.upsert({
       where: { name: countryName },
       update: {},
