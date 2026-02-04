@@ -6,13 +6,13 @@
         "country": "Genève",
         "diets": ["Végétarisme", "Flexitarisme"],
         "ingredients": [
-            "Pain",
-            "1 courgette",
-            "100g fromage de chèvre",
-            "4 cuillères à soupe de pesto",
-            "sel",
-            "Poivre",
-            "Huile d'olive"
+            "2 tranches de pain",
+            "1/2 courgette",
+            "30g fromage de chèvre",
+            "1 cuillère à soupe de pesto",
+            "1 cuillère à café d'huile d'olive",
+            "poivre",
+            "sel"
         ],
         "instructions": [
             "Couper la baguette en tranches et les toaster.",
@@ -30,17 +30,17 @@
         "country": "Canada",
         "diets": ["Végétarisme", "Véganisme", "Sans lactose", "Sans gluten"],
         "ingredients": [
-            "300g de pois secs",
-            "1 oignon",
-            "2 carottes",
-            "1 branche de céleri",
-            "2 gousses d'ail",
-            "150g de jambon en dés",
-            "1L d'eau et 50 cl de bouillon de légumes",
-            "10 cl de lait",
-            "Sel",
-            "Poivre",
-            "Thym"
+            "80g de pois secs",
+            "1/2 oignon",
+            "1 carotte",
+            "1/2 branche de céleri",
+            "1 gousses d'ail",
+            "30g de jambon en dés",
+            "50cl d'eau et 10cl de bouillon de légumes",
+            "5cl de lait",
+            "sel",
+            "poivre",
+            "thym"
         ],
         "instructions": [
             "Rincer les pois secs.",
@@ -59,9 +59,9 @@
         "country": "Mali",
         "diets": ["Végétarisme", "Véganisme", "Sans lactose"],
         "ingredients": [
-            "200g de riz cuit",
-            "100g de farine de riz",
-            "eau",
+            "120g de riz cuit",
+            "30g de farine de riz",
+            "5cl d'eau",
             "huile de friture"
         ],
         "instructions": [
@@ -79,14 +79,14 @@
         "country": "Inde",
         "diets": ["Végétarisme", "Véganisme", "Sans lactose"],
         "ingredients": [
-            "8 feuilles de brick",
-            "2 pommes de terre",
-            "1 poivron",
-            "1 oignon",
-            "80g de lentilles corail",
-            "ail",
+            "3 feuilles de brick",
+            "1 pommes de terre",
+            "1/4 poivron",
+            "1/4 oignon",
+            "40g de lentilles corail",
+            "1 gousse d'ail",
+            "1/2 cuillère à café de garam masala",
             "coriandre",
-            "garam masala",
             "sel",
             "piment"
         ],
@@ -106,12 +106,12 @@
         "country": "Vietnam",
         "diets": ["Pesco-végétarisme", "Flextarisme", "Sans lactose", "Sans gluten", "Cétogène"],
         "ingredients": [
-            "300g de saumon frais",
-            "2 citrons verts",
-            "1 échalote",
+            "100g de saumon frais",
+            "1/2 citrons verts",
+            "1/2 échalote",
             "coriandre",
             "basilic",
-            "Poivre",
+            "poivre",
             "sel",
             "piment"
         ],
@@ -134,11 +134,11 @@
         "country": "Italie",
         "diets": ["Végétarisme", "Véganisme", "Sans lactose", "Flextarisme"],
         "ingredients": [
-            "400g de pâtes",
-            "1 boite de tomates concassées",
-            "1 oignon",
+            "100g de pâtes",
+            "200g de tomates concassées",
+            "1/2 oignon",
             "1 gousse d'ail",
-            "huile d'olive",
+            "1 cuillère à soupe d'huile d'olive",
             "sel",
             "poivre"
         ],
@@ -158,17 +158,17 @@
         "country": "Espagne",
         "diets": ["none"],
         "ingredients": [
-            "400g de poulet",
-            "300g de porc",
-            "200g de moules",
-            "150g de calamars",
-            "400g de riz",
-            "gambas",
-            "oignon",
-            "poivrons",
-            "petits pois",
-            "tomates",
-            "ail",
+            "60g de poulet",
+            "40g de porc",
+            "80g de moules",
+            "60g de calamars",
+            "80g de riz",
+            "2 gambas",
+            "1/4 oignon",
+            "1/2 poivrons",
+            "40g de petits pois",
+            "1 tomate",
+            "1 gousse d'ail",
             "épices à paëlla"
         ],
         "instructions": [
@@ -189,14 +189,14 @@
         "country": "Brésil",
         "diets": ["none"],
         "ingredients": [
-            "500g de haricots noirs",
-            "200g de viande de porc salée",
-            "200g de saucisses fumées",
-            "1 oignon",
-            "2 gousses d'ail",
+            "100g de haricots noirs",
+            "60g de viande de porc salée",
+            "60g de saucisses fumées",
+            "1/2 oignon",
+            "1 gousse d'ail",
             "sel",
             "poivre",
-            "feuilles de laurier"
+            "1 feuille de laurier"
         ],
         "instructions": [
             "Cuire les haricots noirs selon les instructions du paquet.",
@@ -214,16 +214,16 @@
         "country": "Cambodge",
         "diets": ["none"],
         "ingredients": [
-            "400g de filet de poisson blanc",
-            "200ml de lait de coco",
-            "citronnelle",
-            "galanga",
-            "échalote",
-            "feuilles de citronnier",
+            "120g de filet de poisson blanc",
+            "120ml de lait de coco",
+            "1/2 tige de citronnelle",
+            "1/2 galanga",
+            "1/2 échalote",
+            "2 feuilles de citronnier",
             "piment",
-            "chou chinois",
+            "80g de chou chinois",
             "basilic thaï",
-            "cacahuètes concassées"
+            "10g de cacahuètes concassées"
         ],
         "instructions": [
             "Cuire le poisson blanc selon les instructions du paquet.",
@@ -241,13 +241,13 @@
         "country": "Chine",
         "diets": ["Flexitarisme"],
         "ingredients": [
-            "400g de farine",
-            "200ml d'eau tiède",
-            "20g de levure sèche",
-            "1 cuillère à soupe de sucre",
-            "1 cuillère à soupe d'huile végétale",
+            "120g de farine",
+            "70ml d'eau tiède",
+            "4g de levure sèche",
+            "1 cuillère à café de sucre",
+            "1 cuillère à café d'huile végétale",
             "sel",
-            "garniture au choix (porc, légumes, poulet...)"
+            "100g de garniture au choix (porc, légumes, poulet...)"
         ],
         "instructions": [
             "Pour la pâte, mélanger la farine, la levure, le sucre, l'eau, l'huile et le sel.",
@@ -269,13 +269,13 @@
         "country": "États-Unis",
         "diets": ["none"],
         "ingredients": [
-            "250g de speculoos",
-            "3 œufs",
-            "100g de sucre glace",
-            "300g de cream cheese",
-            "100g de beurre fondu",
-            "200ml de crème fraîche",
-            "1 cuillère à café d'extrait de vanille"
+            "60g de speculoos",
+            "1 œuf",
+            "40g de sucre glace",
+            "120g de cream cheese",
+            "30g de beurre fondu",
+            "40ml de crème fraîche",
+            "1/2 cuillère à café d'extrait de vanille"
         ],
         "instructions": [
             "Préchauffer le four à 160°C.",
@@ -295,13 +295,13 @@
         "country": "Maroc",
         "diets": ["Végétarisme", "Flexitarisme"],
         "ingredients": [
-            "250g de farine",
-            "100g de beurre fondu",
-            "50ml d'eau de fleur d'oranger",
+            "80g de farine",
+            "30g de beurre fondu",
+            "15ml d'eau de fleur d'oranger",
             "Pour la farce :",
-            "200g d'amandes en poudre",
-            "100g de sucre glace",
-            "50g de beurre fondu",
+            "60g d'amandes en poudre",
+            "30g de sucre glace",
+            "15g de beurre fondu",
             "eau de fleur d'oranger"
         ],
         "instructions": [
@@ -322,13 +322,13 @@
         "country": "Grande-Bretagne",
         "diets": ["Végétarisme", "Flexitarisme"],
         "ingredients": [
-            "250g de farine",
-            "125g de beurre",
-            "50g de sucre",
+            "100g de farine",
+            "50g de beurre",
+            "30g de sucre",
             "1 œuf",
-            "5 pommes",
-            "50g de sucre roux",
-            "1 cuillère à café de cannelle"
+            "1 pomme",
+            "20g de sucre roux",
+            "1/2 cuillère à café de cannelle"
         ],
         "instructions": [
             "Préparer la pâte en mélangeant la farine, le beurre, le sucre et l'œuf.",
@@ -348,11 +348,11 @@
         "country": "Italie",
         "diets": ["none"],
         "ingredients": [
-            "250g de mascarpone",
-            "3 œufs",
-            "100g de sucre",
-            "200g de biscuits à la cuillère",
-            "300ml de café fort",
+            "120g de mascarpone",
+            "1 œuf",
+            "30g de sucre",
+            "60g de biscuits à la cuillère",
+            "80ml de café fort",
             "cacao en poudre"
         ],
         "instructions": [
@@ -373,10 +373,10 @@
         "country": "Australie",
         "diets": ["none"],
         "ingredients": [
-            "Blanc d'oeufs",
-            "Sucre",
-            "Maïzena",
-            "Chantilly",
+            "2 blancs d'oeufs",
+            "100g de sucre",
+            "1 cuillère à café de maïzena",
+            "80g de chantilly",
             "Fruits (kiwi, fraise, passion, ...)"
         ],
         "instructions": [
