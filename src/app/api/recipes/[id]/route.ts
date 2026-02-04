@@ -29,6 +29,12 @@ export async function GET(
     return NextResponse.json({ error: "Recipe not found" }, { status: 404 });
   }
 
+  // Incrémenter le compteur de vues
+  await prisma.recipes.update({
+    where: { id },
+    data: { views: { increment: 1 } },
+  });
+
   return NextResponse.json(recipe);
 }
 
