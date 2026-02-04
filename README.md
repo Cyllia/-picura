@@ -53,15 +53,59 @@ npm install
 
 ```bash
 npx prisma generate
+npx prisma db push  # Sync schema with database
 ```
 
-4. Start Next.js
+4. Seed database with sample data
+
+```bash
+npm run db:seed
+```
+
+This will import recipes from `Backend/recipes.json` into the database.
+
+5. Start Next.js
 
 ```bash
 npm run dev
 ```
 
 Open http://localhost:3000
+
+## API Routes
+
+All API routes are available at `/api/*`:
+
+### Authentication
+- `POST /api/auth/register` - Create new user
+- `POST /api/auth/login` - User login
+
+### Recipes
+- `GET /api/recipes` - List all recipes
+- `GET /api/recipes/[id]` - Get recipe by ID
+- `POST /api/recipes` - Create recipe
+- `PUT /api/recipes/[id]` - Update recipe
+- `DELETE /api/recipes/[id]` - Delete recipe
+
+### Search & Filters
+- `GET /api/search/recipes?q=...&category=...&country=...` - Search recipes
+- `GET /api/filters/categories` - List categories
+- `GET /api/filters/countries` - List countries
+- `GET /api/filters/diets` - List diets
+- `GET /api/filters/ingredients` - List ingredients
+
+### Ratings
+- `GET /api/ratings?recipe_id=...` - List ratings
+- `POST /api/ratings` - Create rating
+- `PUT /api/ratings/[id]` - Update rating
+- `DELETE /api/ratings/[id]` - Delete rating
+
+### Favorites
+- `GET /api/favorites?user_id=...` - List favorites
+- `POST /api/favorites` - Add favorite
+- `DELETE /api/favorites/[id]` - Remove favorite
+
+See `Backend/openapi.yaml` for complete API specification.
 
 ## Database
 

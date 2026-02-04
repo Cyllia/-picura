@@ -1,0 +1,250 @@
+openapi: 3.0.0
+
+info:
+  title: Epicuria – World Recipes API
+  description: API for managing international recipes with filters and user authentication
+  version: "1.0.0"
+
+servers:
+  - url: http://localhost:3000/api
+
+tags:
+  - name: Auth
+  - name: Users
+  - name: Recipes
+
+paths:
+
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegister'
+      responses:
+        '201':
+          description: User created
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        '200':
+          description: Authenticated user
+
+  /recipes:
+    get:
+      tags: [Recipes]
+      summary: Search and filter recipes
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+        - in: query
+          name: ingredients
+          schema:
+            type: string
+        - in: query
+          name: country
+          schema:
+            type: string
+        - in: query
+          name: type
+          schema:
+            type: string
+            enum: [entrée, plat, dessert]
+        - in: query
+          name: diet
+          schema:
+            type: string
+            enum:
+              - Végétarisme
+              - Véganisme
+              - Pesco-végétarisme
+              - Flexitarisme
+              - Sans gluten
+              - Sans lactose
+              - Cétogène
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 20
+        - in: query
+          name: skip
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of recipes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'
+
+    post:
+      tags: [Recipes]
+      summary: Create a new recipe
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeInput'
+      responses:
+        '201':
+          description: Recipe created
+
+  /recipes/{id}:
+    get:
+      tags: [Recipes]
+      summary: Get recipe by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recipe details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+
+    put:
+      tags: [Recipes]
+      summary: Update a recipe
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeInput'
+      responses:
+        '200':
+          description: Recipe updated
+
+    delete:
+      tags: [Recipes]
+      summary: Delete a recipe
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Recipe deleted
+
+components:
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+
+    Recipe:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        country:
+          type: string
+        type:
+          type: string
+          enum: [entrée, plat, dessert]
+        ingredients:
+          type: array
+          items:
+            type: string
+        diets:
+          type: array
+          items:
+            type: string
+        instructions:
+          type: string
+
+    RecipeInput:
+      type: object
+      required:
+        - name
+        - country
+        - type
+        - ingredients
+      properties:
+        name:
+          type: string
+        country:
+          type: string
+        type:
+          type: string
+        ingredients:
+          type: array
+          items:
+            type: string
+        diets:
+          type: array
+          items:
+            type: string
+        instructions:
+          type: string
+
+    UserRegister:
+      type: object
+      required:
+        - username
+        - email
+        - password
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+
+    UserLogin:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
