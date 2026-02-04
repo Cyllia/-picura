@@ -33,6 +33,33 @@ docs/
 - Node.js 18+
 - Docker Desktop
 
+## VSCode Extensions (Recommandées)
+
+Pour une meilleure expérience de développement, installez ces extensions :
+
+1. **Prisma** (`Prisma.prisma`)
+   - Coloration syntaxique pour schema.prisma
+   - Autocomplétion
+   - Formatage automatique
+
+2. **Docker** (`ms-azuretools.vscode-docker`)
+   - Gestion des conteneurs Docker
+   - Vue des images et conteneurs
+
+3. **ESLint** (`dbaeumer.vscode-eslint`)
+   - Linting JavaScript/TypeScript
+
+4. **Prettier** (`esbenp.prettier-vscode`)
+   - Formatage de code
+
+Installation rapide :
+```bash
+code --install-extension Prisma.prisma
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension esbenp.prettier-vscode
+```
+
 ## Local Setup
 
 1. Start MySQL + phpMyAdmin
