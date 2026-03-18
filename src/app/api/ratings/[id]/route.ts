@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { syncRecipeRatingStats } from "@/lib/rating-stats";
 
 export async function PUT(
   request: Request,
@@ -31,6 +32,8 @@ export async function PUT(
     },
   });
 
+  await syncRecipeRatingStats(updated.recipe_id);
+
   return NextResponse.json(updated);
 }
 
@@ -45,7 +48,9 @@ export async function DELETE(
     return NextResponse.json({ error: "Invalid id" }, { status: 400 });
   }
 
-  await prisma.ratings.delete({ where: { id } });
+  const deleted = await prisma.ratings.delete({ where: { id } });
+
+  await syncRecipeRatingStats(deleted.recipe_id);
 
   return NextResponse.json({ success: true });
 }

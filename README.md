@@ -1,95 +1,58 @@
 # Epicuria (Picura)
 
-International recipes platform built with Next.js, MySQL and Prisma.
+International recipes project built with Next.js, Prisma and MySQL.
+
+## What runs where
+
+- XAMPP is only useful for MySQL/phpMyAdmin.
+- The app itself is a Node.js app, so it must be started with `npm run dev` or `npm run start`.
+- Docker and XAMPP are alternatives for MySQL. Do not run both MySQL servers on port `3306` at the same time.
 
 ## Stack
 
-- Next.js (App Router)
-- MySQL (Docker)
+- Next.js 16 (App Router)
+- React 19
 - Prisma ORM
+- MySQL
 
-## Project Structure
+## Quick start
 
-```
-src/
-	app/                # Next.js App Router
-		layout.tsx
-		page.tsx
-		globals.css
-	lib/
-		prisma.ts         # Prisma singleton
-prisma/
-	schema.prisma       # Prisma schema
-	migrations/
-docker/
-	mysql/
-		init.sql          # DB init script
-docs/
-	diagrams/           # MCD/MLD diagrams
-```
-
-## Requirements
-
-- Node.js 18+
-- Docker Desktop
-
-## VSCode Extensions (Recommandées)
-
-Pour une meilleure expérience de développement, installez ces extensions :
-
-1. **Prisma** (`Prisma.prisma`)
-   - Coloration syntaxique pour schema.prisma
-   - Autocomplétion
-   - Formatage automatique
-
-2. **Docker** (`ms-azuretools.vscode-docker`)
-   - Gestion des conteneurs Docker
-   - Vue des images et conteneurs
-
-3. **ESLint** (`dbaeumer.vscode-eslint`)
-   - Linting JavaScript/TypeScript
-
-4. **Prettier** (`esbenp.prettier-vscode`)
-   - Formatage de code
-
-Installation rapide :
-```bash
-code --install-extension Prisma.prisma
-code --install-extension ms-azuretools.vscode-docker
-code --install-extension dbaeumer.vscode-eslint
-code --install-extension esbenp.prettier-vscode
-```
-
-## Local Setup
-
-1. Start MySQL + phpMyAdmin
-
-```bash
-docker compose up -d
-```
-
-phpMyAdmin: http://localhost:8080
-
-2. Install dependencies
+1. Install dependencies
 
 ```bash
 npm install
 ```
 
-3. Run Prisma
+2. Copy `.env.example` to `.env`
+
+Required values:
 
 ```bash
-npx prisma generate
-npx prisma db push  # Sync schema with database
+DATABASE_URL="mysql://root:@127.0.0.1:3306/epicuria"
+JWT_SECRET="change-me-for-demo"
 ```
 
-4. Seed database with sample data
+3. Start ONE database
+
+Option A: XAMPP
+
+- Start MySQL in XAMPP
+- Create a database named `epicuria`
+- Use the `DATABASE_URL` that matches your XAMPP MySQL user/password
+
+Option B: Docker
 
 ```bash
+docker compose up -d
+```
+
+4. Initialize Prisma
+
+```bash
+npm run db:generate
+npm run db:push
 npm run db:seed
 ```
-
-This will import recipes from `Backend/recipes.json` into the database.
 
 5. Start Next.js
 
@@ -97,51 +60,64 @@ This will import recipes from `Backend/recipes.json` into the database.
 npm run dev
 ```
 
-Open http://localhost:3000
+App URL: [http://localhost:3000](http://localhost:3000)
 
-## API Routes
+## API routes
 
-All API routes are available at `/api/*`:
+### Auth
 
-### Authentication
-- `POST /api/auth/register` - Create new user
-- `POST /api/auth/login` - User login
+- `POST /api/auth/register`
+- `POST /api/auth/login`
 
 ### Recipes
-- `GET /api/recipes` - List all recipes
-- `GET /api/recipes/[id]` - Get recipe by ID
-- `POST /api/recipes` - Create recipe
-- `PUT /api/recipes/[id]` - Update recipe
-- `DELETE /api/recipes/[id]` - Delete recipe
 
-### Search & Filters
-- `GET /api/search/recipes?q=...&category=...&country=...` - Search recipes
-- `GET /api/filters/categories` - List categories
-- `GET /api/filters/countries` - List countries
-- `GET /api/filters/diets` - List diets
-- `GET /api/filters/ingredients` - List ingredients
+- `GET /api/recipes`
+- `GET /api/recipes/[id]`
+- `POST /api/recipes`
+- `PUT /api/recipes/[id]`
+- `DELETE /api/recipes/[id]`
+
+Supported list filters on `GET /api/recipes`:
+
+- `search`
+- `categoryId`
+- `countryId`
+- `userId`
+
+### Search
+
+- `GET /api/search/recipes`
+
+Supported filters:
+
+- `q`
+- `ingredient`
+- `categoryId`
+- `countryId`
+- `dietId`
+
+### Filters
+
+- `GET /api/filters/categories`
+- `GET /api/filters/countries`
+- `GET /api/filters/diets`
+- `GET /api/filters/ingredients`
 
 ### Ratings
-- `GET /api/ratings?recipe_id=...` - List ratings
-- `POST /api/ratings` - Create rating
-- `PUT /api/ratings/[id]` - Update rating
-- `DELETE /api/ratings/[id]` - Delete rating
+
+- `GET /api/ratings?userId=...&recipeId=...`
+- `POST /api/ratings`
+- `PUT /api/ratings/[id]`
+- `DELETE /api/ratings/[id]`
 
 ### Favorites
-- `GET /api/favorites?user_id=...` - List favorites
-- `POST /api/favorites` - Add favorite
-- `DELETE /api/favorites/[id]` - Remove favorite
 
-See `Backend/openapi.yaml` for complete API specification.
+- `GET /api/favorites?userId=...&recipeId=...`
+- `POST /api/favorites`
+- `DELETE /api/favorites/[id]`
 
-## Database
+## Notes for the course project
 
-Connection string (local):
-
-```
-mysql://root:root@localhost:3306/epicuria
-```
-
-## Diagrams
-
-See [docs/diagrams](docs/diagrams) for MCD/MLD.
+- Authentication exists for login/register, but mutation routes are not yet protected by JWT middleware.
+- The backend is good enough for a course prototype, but not production-ready.
+- Recipe images are served from `/ressources/...` for the upcoming frontend integration.

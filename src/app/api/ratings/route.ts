@@ -1,26 +1,27 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { publicUserSelect } from "@/lib/public-user-select";
+import { parseOptionalNumber } from "@/lib/route-utils";
+import { syncRecipeRatingStats } from "@/lib/rating-stats";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const userId = searchParams.get("userId");
-  const recipeId = searchParams.get("recipeId");
+  const userId = parseOptionalNumber(searchParams.get("userId"));
+  const recipeId = parseOptionalNumber(searchParams.get("recipeId"));
 
   const where: Record<string, unknown> = {};
 
-  if (userId) {
-    const value = Number(userId);
-    if (!Number.isNaN(value)) where.user_id = value;
+  if (userId !== undefined) {
+    where.user_id = userId;
   }
 
-  if (recipeId) {
-    const value = Number(recipeId);
-    if (!Number.isNaN(value)) where.recipe_id = value;
+  if (recipeId !== undefined) {
+    where.recipe_id = recipeId;
   }
 
   const ratings = await prisma.ratings.findMany({
     where,
-    include: { users: true, recipes: true },
+    include: { users: { select: publicUserSelect }, recipes: true },
     orderBy: { created_at: "desc" },
   });
 
@@ -57,6 +58,8 @@ export async function POST(request: Request) {
       comment,
     },
   });
+
+  await syncRecipeRatingStats(created.recipe_id);
 
   return NextResponse.json(created, { status: 201 });
 }

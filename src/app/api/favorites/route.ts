@@ -1,26 +1,26 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { favoriteRelationsInclude } from "@/lib/recipe-relations";
+import { parseOptionalNumber } from "@/lib/route-utils";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const userId = searchParams.get("userId");
-  const recipeId = searchParams.get("recipeId");
+  const userId = parseOptionalNumber(searchParams.get("userId"));
+  const recipeId = parseOptionalNumber(searchParams.get("recipeId"));
 
   const where: Record<string, unknown> = {};
 
-  if (userId) {
-    const value = Number(userId);
-    if (!Number.isNaN(value)) where.user_id = value;
+  if (userId !== undefined) {
+    where.user_id = userId;
   }
 
-  if (recipeId) {
-    const value = Number(recipeId);
-    if (!Number.isNaN(value)) where.recipe_id = value;
+  if (recipeId !== undefined) {
+    where.recipe_id = recipeId;
   }
 
   const favorites = await prisma.favorites.findMany({
     where,
-    include: { recipes: true, users: true },
+    include: favoriteRelationsInclude,
     orderBy: { created_at: "desc" },
   });
 
@@ -40,12 +40,21 @@ export async function POST(request: Request) {
     );
   }
 
-  const favorite = await prisma.favorites.create({
-    data: {
+  const existingFavorite = await prisma.favorites.findFirst({
+    where: {
       user_id: userId,
       recipe_id: recipeId,
     },
   });
+
+  const favorite =
+    existingFavorite ??
+    (await prisma.favorites.create({
+      data: {
+        user_id: userId,
+        recipe_id: recipeId,
+      },
+    }));
 
   return NextResponse.json(favorite, { status: 201 });
 }

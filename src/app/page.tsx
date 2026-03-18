@@ -1,7 +1,5 @@
-export default function Home() {
-  return (
-    <main>
-      <h1>Epicuria</h1>
-    </main>
-  );
+import { HomeFeed } from "@/components/epicuria/home-feed";
+
+export default function HomePage() {
+  return <HomeFeed />;
 }

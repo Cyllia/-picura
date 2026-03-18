@@ -1,13 +1,20 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { recipeRelationsInclude } from "@/lib/recipe-relations";
+import { parseOptionalNumber } from "@/lib/route-utils";
+import {
+  fetchRecipeWithRelations,
+  parseRecipeWriteInput,
+  syncRecipeRelations,
+} from "@/lib/recipe-write";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
   const search = searchParams.get("search")?.trim();
-  const categoryId = searchParams.get("categoryId");
-  const countryId = searchParams.get("countryId");
-  const userId = searchParams.get("userId");
+  const categoryId = parseOptionalNumber(searchParams.get("categoryId"));
+  const countryId = parseOptionalNumber(searchParams.get("countryId"));
+  const userId = parseOptionalNumber(searchParams.get("userId"));
 
   const where: Record<string, unknown> = {};
 
@@ -15,31 +22,22 @@ export async function GET(request: Request) {
     where.title = { contains: search };
   }
 
-  if (categoryId) {
-    const value = Number(categoryId);
-    if (!Number.isNaN(value)) where.category_id = value;
+  if (categoryId !== undefined) {
+    where.category_id = categoryId;
   }
 
-  if (countryId) {
-    const value = Number(countryId);
-    if (!Number.isNaN(value)) where.country_id = value;
+  if (countryId !== undefined) {
+    where.country_id = countryId;
   }
 
-  if (userId) {
-    const value = Number(userId);
-    if (!Number.isNaN(value)) where.user_id = value;
+  if (userId !== undefined) {
+    where.user_id = userId;
   }
 
   const recipes = await prisma.recipes.findMany({
     where,
     orderBy: { created_at: "desc" },
-    include: {
-      categories: true,
-      countries: true,
-      users: true,
-      recipe_diets: { include: { diets: true } },
-      recipe_ingredients: { include: { ingredients: true } },
-    },
+    include: recipeRelationsInclude,
   });
 
   return NextResponse.json(recipes);
@@ -48,7 +46,14 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const body = await request.json();
 
-  const requiredFields = ["user_id", "title", "instructions", "category_id", "country_id"];
+  const requiredFields = [
+    "user_id",
+    "title",
+    "instructions",
+    "category_id",
+    "country_id",
+    "image_url",
+  ];
   const missing = requiredFields.filter((field) => body?.[field] == null);
 
   if (missing.length > 0) {
@@ -58,21 +63,30 @@ export async function POST(request: Request) {
     );
   }
 
+  const parsed = parseRecipeWriteInput(body, "create");
+
   const recipe = await prisma.recipes.create({
     data: {
-      user_id: Number(body.user_id),
-      title: String(body.title),
-      description: body.description ? String(body.description) : null,
-      difficulty: body.difficulty != null ? Number(body.difficulty) : undefined,
-      prep_time: body.prep_time != null ? Number(body.prep_time) : undefined,
-      cook_time: body.cook_time != null ? Number(body.cook_time) : undefined,
-      servings: body.servings != null ? Number(body.servings) : undefined,
-      instructions: String(body.instructions),
-      image_url: body.image_url ? String(body.image_url) : null,
-      category_id: Number(body.category_id),
-      country_id: Number(body.country_id),
+      user_id: Number(parsed.recipeData.user_id),
+      title: String(parsed.recipeData.title),
+      description: parsed.recipeData.description ? String(parsed.recipeData.description) : null,
+      difficulty: parsed.recipeData.difficulty,
+      prep_time: parsed.recipeData.prep_time,
+      cook_time: parsed.recipeData.cook_time,
+      servings: parsed.recipeData.servings,
+      instructions: String(parsed.recipeData.instructions),
+      image_url: parsed.recipeData.image_url ? String(parsed.recipeData.image_url) : null,
+      category_id: Number(parsed.recipeData.category_id),
+      country_id: Number(parsed.recipeData.country_id),
     },
   });
 
-  return NextResponse.json(recipe, { status: 201 });
+  await syncRecipeRelations(recipe.id, {
+    dietIds: parsed.dietIds,
+    ingredients: parsed.ingredients,
+  });
+
+  const fullRecipe = await fetchRecipeWithRelations(recipe.id);
+
+  return NextResponse.json(fullRecipe, { status: 201 });
 }

@@ -1,38 +1,33 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { recipeRelationsInclude } from "@/lib/recipe-relations";
+import { parseRequiredNumber } from "@/lib/route-utils";
+import { fetchRecipeWithRelations, parseRecipeWriteInput, syncRecipeRelations } from "@/lib/recipe-write";
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id: idParam } = await params;
-  const id = Number(idParam);
+  const id = parseRequiredNumber(idParam);
 
-  if (Number.isNaN(id)) {
+  if (id === null) {
     return NextResponse.json({ error: "Invalid id" }, { status: 400 });
   }
 
-  const recipe = await prisma.recipes.findUnique({
+  const existingRecipe = await prisma.recipes.findUnique({
     where: { id },
-    include: {
-      categories: true,
-      countries: true,
-      users: true,
-      recipe_diets: { include: { diets: true } },
-      recipe_ingredients: { include: { ingredients: true } },
-      ratings: true,
-      favorites: true,
-    },
+    select: { id: true },
   });
 
-  if (!recipe) {
+  if (!existingRecipe) {
     return NextResponse.json({ error: "Recipe not found" }, { status: 404 });
   }
 
-  // Incrémenter le compteur de vues
-  await prisma.recipes.update({
+  const recipe = await prisma.recipes.update({
     where: { id },
     data: { views: { increment: 1 } },
+    include: recipeRelationsInclude,
   });
 
   return NextResponse.json(recipe);
@@ -43,29 +38,37 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id: idParam } = await params;
-  const id = Number(idParam);
+  const id = parseRequiredNumber(idParam);
 
-  if (Number.isNaN(id)) {
+  if (id === null) {
     return NextResponse.json({ error: "Invalid id" }, { status: 400 });
   }
 
   const body = await request.json();
+  const parsed = parseRecipeWriteInput(body, "update");
 
-  const recipe = await prisma.recipes.update({
+  await prisma.recipes.update({
     where: { id },
     data: {
-      title: body.title != null ? String(body.title) : undefined,
-      description: body.description != null ? String(body.description) : undefined,
-      difficulty: body.difficulty != null ? Number(body.difficulty) : undefined,
-      prep_time: body.prep_time != null ? Number(body.prep_time) : undefined,
-      cook_time: body.cook_time != null ? Number(body.cook_time) : undefined,
-      servings: body.servings != null ? Number(body.servings) : undefined,
-      instructions: body.instructions != null ? String(body.instructions) : undefined,
-      image_url: body.image_url != null ? String(body.image_url) : undefined,
-      category_id: body.category_id != null ? Number(body.category_id) : undefined,
-      country_id: body.country_id != null ? Number(body.country_id) : undefined,
+      title: parsed.recipeData.title,
+      description: parsed.recipeData.description,
+      difficulty: parsed.recipeData.difficulty,
+      prep_time: parsed.recipeData.prep_time,
+      cook_time: parsed.recipeData.cook_time,
+      servings: parsed.recipeData.servings,
+      instructions: parsed.recipeData.instructions,
+      image_url: parsed.recipeData.image_url,
+      category_id: parsed.recipeData.category_id,
+      country_id: parsed.recipeData.country_id,
     },
   });
+
+  await syncRecipeRelations(id, {
+    dietIds: parsed.dietIds,
+    ingredients: parsed.ingredients,
+  });
+
+  const recipe = await fetchRecipeWithRelations(id);
 
   return NextResponse.json(recipe);
 }
@@ -75,9 +78,9 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id: idParam } = await params;
-  const id = Number(idParam);
+  const id = parseRequiredNumber(idParam);
 
-  if (Number.isNaN(id)) {
+  if (id === null) {
     return NextResponse.json({ error: "Invalid id" }, { status: 400 });
   }
 

@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { recipeRelationsInclude } from "@/lib/recipe-relations";
+import { parseOptionalNumber } from "@/lib/route-utils";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
   const q = searchParams.get("q")?.trim();
   const ingredient = searchParams.get("ingredient")?.trim();
-  const categoryId = searchParams.get("categoryId");
-  const countryId = searchParams.get("countryId");
-  const dietId = searchParams.get("dietId");
+  const categoryId = parseOptionalNumber(searchParams.get("categoryId"));
+  const countryId = parseOptionalNumber(searchParams.get("countryId"));
+  const dietId = parseOptionalNumber(searchParams.get("dietId"));
 
   const where: Record<string, unknown> = {};
 
@@ -16,21 +18,16 @@ export async function GET(request: Request) {
     where.title = { contains: q };
   }
 
-  if (categoryId) {
-    const value = Number(categoryId);
-    if (!Number.isNaN(value)) where.category_id = value;
+  if (categoryId !== undefined) {
+    where.category_id = categoryId;
   }
 
-  if (countryId) {
-    const value = Number(countryId);
-    if (!Number.isNaN(value)) where.country_id = value;
+  if (countryId !== undefined) {
+    where.country_id = countryId;
   }
 
-  if (dietId) {
-    const value = Number(dietId);
-    if (!Number.isNaN(value)) {
-      where.recipe_diets = { some: { diet_id: value } };
-    }
+  if (dietId !== undefined) {
+    where.recipe_diets = { some: { diet_id: dietId } };
   }
 
   if (ingredient) {
@@ -47,13 +44,7 @@ export async function GET(request: Request) {
   const recipes = await prisma.recipes.findMany({
     where,
     orderBy: { created_at: "desc" },
-    include: {
-      categories: true,
-      countries: true,
-      users: true,
-      recipe_diets: { include: { diets: true } },
-      recipe_ingredients: { include: { ingredients: true } },
-    },
+    include: recipeRelationsInclude,
   });
 
   return NextResponse.json(recipes);
