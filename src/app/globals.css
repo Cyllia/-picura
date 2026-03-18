@@ -828,6 +828,21 @@ p {
   box-shadow: var(--shadow-soft);
 }
 
+.recipe-detail-stack {
+  display: grid;
+  gap: 40px;
+}
+
+.related-recipes-section {
+  display: grid;
+  gap: 24px;
+}
+
+.related-recipes-copy {
+  max-width: 720px;
+  margin-top: 12px;
+}
+
 .recipe-hero-img {
   position: sticky;
   top: 120px;
