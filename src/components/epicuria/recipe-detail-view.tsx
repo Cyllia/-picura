@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { PlayCircle } from "lucide-react";
+import { CookMode } from "@/components/epicuria/cook-mode";
 import { DetailActions } from "@/components/epicuria/detail-actions";
 import { RecipeCard } from "@/components/epicuria/recipe-card";
 import {
@@ -20,8 +21,16 @@ type RecipeDetailViewProps = {
 export function RecipeDetailView({ slug }: RecipeDetailViewProps) {
   const [recipe, setRecipe] = useState<FrontRecipe | null>(null);
   const [recommendedRecipes, setRecommendedRecipes] = useState<FrontRecipe[]>([]);
+  const [isCookModeOpen, setIsCookModeOpen] = useState(false);
   const [error, setError] = useState("");
   const recipeId = parseRecipeIdFromSlug(slug);
+
+  const handleOpenCookMode = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.setTimeout(() => {
+      setIsCookModeOpen(true);
+    }, 180);
+  };
 
   useEffect(() => {
     if (!recipeId) {
@@ -62,6 +71,14 @@ export function RecipeDetailView({ slug }: RecipeDetailViewProps) {
 
   return (
     <div className="recipe-detail-stack">
+      {isCookModeOpen ? (
+        <CookMode
+          isOpen={isCookModeOpen}
+          recipe={recipe}
+          onClose={() => setIsCookModeOpen(false)}
+        />
+      ) : null}
+
       <div className="recipe-layout">
         <div>
           <img alt={recipe.alt} className="recipe-hero-img" src={recipe.image} />
@@ -79,7 +96,7 @@ export function RecipeDetailView({ slug }: RecipeDetailViewProps) {
               <p>Recette proposee par</p>
               <strong>{recipe.author.name}</strong>
             </div>
-            <DetailActions recipeId={recipe.id} />
+            <DetailActions recipeId={recipe.id} recipeTitle={recipe.title} />
           </div>
 
           <div className="recipe-stats">
@@ -127,7 +144,12 @@ export function RecipeDetailView({ slug }: RecipeDetailViewProps) {
               <p>Les etapes de preparation seront ajoutees prochainement.</p>
             )}
 
-            <button className="btn btn-primary" style={{ marginTop: 24, width: "100%" }}>
+            <button
+              className="btn btn-primary"
+              style={{ marginTop: 24, width: "100%" }}
+              type="button"
+              onClick={handleOpenCookMode}
+            >
               <PlayCircle size={18} />
               Lancer le mode cuisine
             </button>

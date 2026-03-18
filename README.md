@@ -121,3 +121,34 @@ Supported filters:
 - Authentication exists for login/register, but mutation routes are not yet protected by JWT middleware.
 - The backend is good enough for a course prototype, but not production-ready.
 - Recipe images are served from `/ressources/...` for the upcoming frontend integration.
+
+## Bonus features included
+
+- Dynamic live search in the interface
+- Random suggestion page
+- Related recipe recommendations based on type, diets and shared ingredients
+- Advanced cooking mode with step-by-step focus view, ingredient checklist, portions control and cooking timer
+- Smart sharing from the recipe detail page with native share support or clipboard fallback
+
+## Deployment prep
+
+The project is prepared for deployment on Vercel.
+
+### Required environment variables
+
+```bash
+DATABASE_URL="mysql://USER:PASSWORD@HOST:3306/epicuria"
+JWT_SECRET="replace-with-a-strong-secret"
+```
+
+### Vercel checklist
+
+1. Push the repository to GitHub
+2. Import the project into Vercel
+3. Add the environment variables above
+4. Use a reachable MySQL database, not a local-only database
+5. Redeploy after the variables are saved
+
+### Health check
+
+- `GET /api/health`
